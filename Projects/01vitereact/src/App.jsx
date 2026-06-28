@@ -1,7 +1,11 @@
-
+import Chai from './chai'
 function App() {
   return (
-    <h1>react with vite start | Syed Muhammad Suhaib Hasan</h1>
+    // empty tags are called fragements
+  <> 
+    <Chai/>
+    <h1>chai aur react</h1>
+  </> 
   )
 }
 
