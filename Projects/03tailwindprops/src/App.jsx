@@ -6,11 +6,17 @@ import './App.css'
 import Card from './components.jsx/card'
 
 function App() {
+  let myObj = {
+    name:"Sohaib",
+    age:20
+  }
+
+  let newArr=[1,2,3,4,5,6]
   return (
     <>
     <div className='bg-slate-900 flex flex-wrap h-screen place-content-center items-center'>
-    <Card channel="sohaib hasan" />
-    <Card />
+    <Card username="sohaibhasan" btnText="open LinkedIn"/>
+    <Card username="muhammad hasan" />
      
     </div>
     </>

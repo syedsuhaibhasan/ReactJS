@@ -1,12 +1,12 @@
 import React from 'react'
 
-function Card(props) {
-    console.log("props", props) ;
+function Card({username, btnText="vist linkedIn"}) {
+    console.log(username) ;
     
-    return(
+    return( 
     <div className="relative max-w-lg p-8 border border-gray-100 bg-black shadow-xl rounded-xl">
       <span className="absolute right-4 top-4 rounded-full px-3 py-1.5 bg-green-100 text-green-600 font-medium text-xs">
-        4.3
+        {username}
       </span>
 
       <div className="mt-4 text-gray-200 sm:pr-8">
@@ -30,6 +30,9 @@ function Card(props) {
         <p className="mt-2 text-sm">
           You can manage phone, email and chat conversations all from a single mailbox.
         </p>
+        <button className='bg-slate-400 rounded-lg w-40'>
+          {btnText}
+        </button>
       </div>
     </div>
     )
