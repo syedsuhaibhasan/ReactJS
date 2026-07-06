@@ -6,6 +6,7 @@ function Login() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
+    // set context "user" value to username
     const {setUser} = useContext(UserContext)
     
     const handleSubmit = (e) => {
