@@ -39,10 +39,12 @@ export class AuthService {
         try {
           return await this.account.get()  
         } catch (error) {
-            throw error
+            // if no account exists throw error trreat as guest
+            if (error?.code === 401) {
+                return null;
+            }
+            throw error;
         }
-        // if no user exists
-        return null;
     }
 
     async logout(){

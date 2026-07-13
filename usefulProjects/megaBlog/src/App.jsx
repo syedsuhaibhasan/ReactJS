@@ -1,3 +1,4 @@
+import {Header, Footer} from './components'
 import { useState, useEffect } from 'react'
 import {useDispatch} from 'react-redux'
 import './App.css'
@@ -11,21 +12,27 @@ function App() {
     authService.getCurrentUser()
     .then((userData) => {
       // if the current user gets the data, the login state will be updated to true, and updates userdata
-      if (userData) dispatch(login({userData}))
+      if (userData) {
+        dispatch(login({userData}))
+      }
       // if it returns false or nothing, the state is still updated to logout, to keep the state updated
-      else {dispatch(logout())}
+      else {
+        dispatch(logout())
+      }
     })
     .finally(() => setLoading(false))
   }, [])
 
-  if (loading) {
-    return 
-    <div>Loading...</div>
-  } else {
-    return
-    <div className='min-h-screen flex flex-wrap content-between bg-gray-400'></div>
-  }
+  return !loading ? (
+    <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
+      <div className='w-full block'>
+        <Header />
+        <main>
+          {/* <Outlet/> */}
+        </main>
+        <Footer />
+      </div>
+    </div>
+  ) : null
 }
-
 export default App
- 
