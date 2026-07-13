@@ -23,7 +23,7 @@ function App() {
     <div>Loading...</div>
   } else {
     return
-    <div className=''></div>
+    <div className='min-h-screen flex flex-wrap content-between bg-gray-400'></div>
   }
 }
 
