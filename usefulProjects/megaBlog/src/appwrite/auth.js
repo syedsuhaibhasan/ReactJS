@@ -7,7 +7,7 @@ export class AuthService {
 
     constructor(){
         this.client
-            .setEndpoint(conf.appwriteURL)
+            .setEndpoint(conf.appwriteEndpoint)
             .setProject(conf.projectName);
         this.account = new Account(this.client);
     }
