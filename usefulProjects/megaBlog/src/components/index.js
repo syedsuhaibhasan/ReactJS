@@ -8,9 +8,9 @@ import Input from "./Input";
 import PostCard from "./PostCard"
 import SelectBtn from "./SelectBtn";
 import RTE from "./RTE";
-import PostForm from './PostFrom'
 import SignUp from "./SignUp";
 import Login from "./Login";
+import PostForm from "./PostForm"
 
 export {
     Header,
@@ -23,8 +23,7 @@ export {
     PostCard,
     SelectBtn,
     RTE,
-    PostForm,
     SignUp,
-    Login
-
+    Login,
+    PostForm
 };
