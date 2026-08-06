@@ -4,7 +4,7 @@ import appwriteService from "../appwrite/config"
 import {useNavigate, useParams} from 'react-router-dom'
 
 function EditPost() {
-  const [posts, setPosts] = useState(null)
+  const [post, setPosts] = useState(null)
   const {slug} = useParams()
   const navigate = useNavigate()
 
@@ -16,13 +16,17 @@ function EditPost() {
         }
       )
     } else {
-      navigate('/posts')
+      navigate('/')
     }
   }, [slug, navigate])
 
-  return (
-    <div>EditPost</div>
-  )
+  return post ?(
+    <div className='py-8'>
+      <COntainer>
+        <PostForm post={post}/>
+      </COntainer>
+    </div>
+  ) : null
 }
 
 export default EditPost
