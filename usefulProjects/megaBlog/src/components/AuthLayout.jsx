@@ -20,9 +20,12 @@ export default function Protected(
         
         //let authValue = authStatus === true ? true : false`
 
+        // If this page requires authentication AND the user isn't authenticated, send them to /login
         if(authentication && authStatus !== authentication){
             navigate("/login")
-        } else if(!authentication && authStatus !== authentication){
+        }
+        // If this page is for unauthenticated users, but the user is authenticated, send them to /
+         else if(!authentication && authStatus !== authentication){
             navigate("/")
         }
         setLoader(false)
