@@ -3,6 +3,8 @@ import {Editor} from '@tinymce/tinymce-react';
 import {Controller} from 'react-hook-form';
 
 function RTE({name, control, label, defaultValue=""}) {
+  const apikey = import.meta.env.VITE_TINYMCE_API;
+
   return (
     <div className='w-full'>
       {label && <label className='inline-block mb-1 pl-1'>
@@ -13,39 +15,32 @@ function RTE({name, control, label, defaultValue=""}) {
       control={control}
       render={({field: {onChange}}) => (
       <Editor
-        initialValue={defaultValue}
-        init={{
-            initialValue: defaultValue,
-            height: 500,
-            menubar: true,
-            plugins: [
-                "image",
-                "advlist",
-                "autolink",
-                "lists",
-                "link",
-                "image",
-                "charmap",
-                "preview",
-                "anchor",
-                "searchreplace",
-                "visualblocks",
-                "code",
-                "fullscreen",
-                "insertdatetime",
-                "media",
-                "table",
-                "code",
-                "help",
-                "wordcount",
-                "anchor",
-            ],
-            toolbar:
-            "undo redo | blocks | image | bold italic forecolor | alignleft aligncenter bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |removeformat | help",
-            content_style: "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }"
-        }}
-        onEditorChange={onChange}
-      />
+      apiKey='r03f398qt9pq5rpaar93ccjoeo2h321ohvel1ts3i7u3dnr8'
+      init={{
+        plugins: [
+          // Core editing features
+          'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
+          // Premium features
+          'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'advtemplate', 'tinymceai', 'uploadcare', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown','importword', 'exportword', 'exportpdf'
+        ],
+        toolbar: 'undo redo | tinymceai-chat tinymceai-quickactions tinymceai-review | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        mergetags_list: [
+          { value: 'First.Name', title: 'First Name' },
+          { value: 'Email', title: 'Email' },
+        ],
+        tinymceai_token_provider: async () => {
+          await fetch(`https://demo.api.tiny.cloud/1/${apikey}/auth/random`, { method: "POST", credentials: "include" });
+          return { token: await fetch(`https://demo.api.tiny.cloud/1/${apikey}/jwt/tinymceai`, { credentials: "include" }).then(r => r.text()) };
+        },
+        uploadcare_public_key: '6a0dfe8e87f9db385f75',
+      }}
+      initialValue={defaultValue}
+      onEditorChange={(content) => {
+        onChange(content)
+      }}
+    />  
     )}
     />
 
