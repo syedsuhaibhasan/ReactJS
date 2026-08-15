@@ -71,7 +71,7 @@ function Login() {
             {...register("password", {
               required: true,
             })} />
-            <Button type="submit" className="w-full">Sign in</Button>
+            <Button type="submit" className="w-full bg-blue-500 hover:bg-blue-700 ">Sign in</Button>
           </div>
         </form>
       </div>

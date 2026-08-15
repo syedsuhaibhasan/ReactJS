@@ -78,7 +78,7 @@ function SignUp() {
                             required: true,
                         })} />
 
-                        <Button type="submit" className="w-full">Sign Up</Button>
+                        <Button type="submit" className="w-full bg-blue-500 hover:bg-blue-700 ">Sign Up</Button>
                     </div>
                 </form>
             </div>

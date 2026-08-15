@@ -20,11 +20,6 @@ function Header() {
       active: !authStatus
     },
     {
-      name: 'Home',
-      path: '/',
-      active: true
-    },
-    {
       name: 'Signup',
       path: '/signup',
       active: !authStatus
@@ -36,7 +31,7 @@ function Header() {
     },
     {
       name: 'Add Post',
-      path: '/add-post',
+      path: '/create-post',
       active: authStatus
     },
     {}

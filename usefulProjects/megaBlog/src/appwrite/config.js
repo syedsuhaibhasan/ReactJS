@@ -8,7 +8,7 @@ export class Service{
 
     constructor(){
         this.client
-        .setEndpoint(conf.appwriteURL)
+        .setEndpoint(conf.appwriteEndpoint)
         .setProject(conf.projectName);
     this.databases = new Databases(this.client);
     this.bucket = new Storage(this.client);
@@ -16,7 +16,7 @@ export class Service{
 
     async createPost({title, slug, content, featuredImage, status, userId}){
         try {
-            return await this.databases.createRow(
+            return await this.databases.createDocument(
                conf.databaseID,
                conf.collectionID,
                slug,
