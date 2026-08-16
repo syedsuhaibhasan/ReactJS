@@ -81,10 +81,14 @@ export class Service{
 
     async getAllPosts(queries = [Query.equal("status", "active")]){
         try {
+            const safeQueries = Array.isArray(queries) && queries.length
+                ? queries
+                : [Query.equal("status", "active")]
+
             return await this.databases.listDocuments(
                 conf.databaseID,
                 conf.collectionID,
-                queries,
+                safeQueries,
             )
         } catch (error) {
             console.log("Appwrite service :: getAllPosts error", error);

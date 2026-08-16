@@ -14,6 +14,7 @@ function SelectBtn({
         </label>}
         <select
         {...props}
+        ref={ref}
         id={id}
         className={`w-full rounded-md border border-gray-300 bg-white py-2 px-3 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 ${className}`}
         >
