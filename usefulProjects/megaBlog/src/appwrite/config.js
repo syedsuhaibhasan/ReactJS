@@ -67,14 +67,14 @@ export class Service{
 
     async getPost(slug){
         try {
-            return await this.databases.getRow(
+            return await this.databases.getDocument(
                 conf.databaseID,
                 conf.collectionID,
                 slug,
             )
             return true
         } catch (error) {
-            console.log("Appwrite service :: deletePost error", error);
+            console.log("Appwrite service :: getPost error", error);
             return false
         }
     }
