@@ -14,30 +14,27 @@ function RTE({name, control, label, defaultValue=""}) {
       name={name || "content"}
       control={control}
       render={({field: {onChange}}) => (
-      <Editor
-      apiKey={apikey}
-      init={{
-        plugins: [
-          // Core editing features
-          'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
-          // Premium features
-          // 'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'advtemplate', 'tinymceai', 'uploadcare', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown','importword', 'exportword', 'exportpdf'
-        ],
-        toolbar: 'undo redo | tinymceai-chat tinymceai-quickactions tinymceai-review | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-        tinycomments_mode: 'embedded',
-        tinycomments_author: 'Author name',
-        mergetags_list: [
-          { value: 'First.Name', title: 'First Name' },
-          { value: 'Email', title: 'Email' },
-        ],
-        tinymceai_token_provider: async () => {
-          await fetch(`https://demo.api.tiny.cloud/1/${apikey}/auth/random`, { method: "POST", credentials: "include" });
-          return { token: await fetch(`https://demo.api.tiny.cloud/1/${apikey}/jwt/tinymceai`, { credentials: "include" }).then(r => r.text()) };
-        },
-        uploadcare_public_key: '6a0dfe8e87f9db385f75',
-      }}
-      initialValue="Welcome to TinyMCE!"
-    />  
+          <Editor
+          onEditorChange={onChange}
+          initialValue={defaultValue}
+          apiKey={apikey}
+          init={{
+            initialValue: defaultValue,
+            height: 500,
+            menubar: false,
+            skin: 'oxide-dark',
+            content_css: 'dark',
+            plugins: [
+              // Core editing features
+              'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',],
+            toolbar: 'undo redo | tinymceai-chat tinymceai-quickactions tinymceai-review | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinymceai_token_provider: async () => {
+              await fetch(`https://demo.api.tiny.cloud/1/${apikey}/auth/random`, { method: "POST", credentials: "include" });
+              return { token: await fetch(`https://demo.api.tiny.cloud/1/${apikey}/jwt/tinymceai`, { credentials: "include" }).then(r => r.text()) };
+            },
+            uploadcare_public_key: '6a0dfe8e87f9db385f75',
+          }}
+        />  
     )}
     />
 
