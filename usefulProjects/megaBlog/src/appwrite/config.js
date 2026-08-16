@@ -81,7 +81,7 @@ export class Service{
 
     async getAllPosts(queries = [Query.equal("status", "active")]){
         try {
-            return await this.databases.listRows(
+            return await this.databases.listDocuments(
                 conf.databaseID,
                 conf.collectionID,
                 queries,
@@ -119,10 +119,14 @@ export class Service{
     }
 
     getFilePreview(fileId){
-        return this.bucket.getFilePreview(
+        try{
+        return this.bucket.getFileView(
             conf.bucketID,
             fileId
-        )
+        )} catch(error){
+            console.log("Appwrite service :: getFilePreview error", error);
+            return false;
+        }
     }
 }
 
